@@ -130,11 +130,13 @@
         </a>
     </h2>
 
-    <p>
-        <a href="https://github.com/ashutosh00710/github-readme-activity-graph">
-            <img src="https://github-readme-activity-graph.vercel.app/graph?username=baponkar&amp;theme=react-dark" alt="Bapon Kar&#39;s github activity graph">
-        </a>
-    </p>
+    <div class="graph-container">
+        <p>
+            <a href="https://github.com/ashutosh00710/github-readme-activity-graph">
+                <img src="https://github-readme-activity-graph.vercel.app/graph?username=baponkar&amp;theme=react-dark" alt="Bapon Kar's github activity graph">
+            </a>
+        </p>
+    </div>
     <hr>
 
     <!--Contacts-->
@@ -152,26 +154,16 @@
     <hr>
     
     <div id="CounterVisitor">
-        <p>.</p>
+        <p><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fbaponkar.github.io&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Visitors&edge_flat=false" alt="Visitor Counter"></p>
     </div>
+    
+    
 
-    <script>
-        var n = localStorage.getItem('on_load_counter');
+    <hr>
+    
 
-        if (n === null) {
-        n = 0;
-        }
-        n++;
-
-        localStorage.setItem("on_load_counter", n);
-
-        nums = n.toString().split('').map(Number);
-        document.getElementById('CounterVisitor').innerHTML = '';
-        for (var i of nums) {
-        document.getElementById('CounterVisitor').innerHTML += '<span class="counter-item">' + i + '</span>';
-        }
-    </script>
-
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script>
         var textWrapper = document.querySelector('.ml14 .letters');
             textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
