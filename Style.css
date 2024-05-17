@@ -24,8 +24,8 @@ body {
 
 .rounded-box {
     background-color: #000000;
-    border: 2px solid #8a0505;
-    border-radius: 15px; /* Adjust the radius to change the roundness */
+    border: 2px solid #f8f5f5;
+    border-radius: 8px; /* Adjust the radius to change the roundness */
     padding: 2px;
     box-sizing: border-box;
     margin: 2%;
@@ -249,6 +249,21 @@ nav {
         }
   }
 
+/* Responsive image styling */
+.responsive-image {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    align-content: flex-start;
+}
+
+.align-left {
+    margin-left: 0;
+}
+
 
 .ml14 {
 font-weight: 200;
@@ -288,6 +303,8 @@ line-height: 1em;
 .graph-container img {
     max-width: 100%;
     height: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .wave {
