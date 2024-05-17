@@ -26,9 +26,9 @@ body {
     background-color: #000000;
     border: 2px solid #8a0505;
     border-radius: 15px; /* Adjust the radius to change the roundness */
-    padding: 5px;
+    padding: 2px;
     box-sizing: border-box;
-    margin: 5%;
+    margin: 2%;
 
     h1{
         color: rgb(124, 124, 167);
@@ -250,37 +250,37 @@ nav {
   }
 
 
-  .ml14 {
-    font-weight: 200;
-    font-size: 3.2em;
-  }
-  
-  .ml14 .text-wrapper {
-    position: relative;
-    display: inline-block;
-    padding-top: 0.1em;
-    padding-right: 0.05em;
-    padding-bottom: 0.15em;
-  }
-  
-  .ml14 .line {
-    opacity: 0;
-    position: absolute;
-    left: 0;
-    height: 2px;
-    width: 100%;
-    background-color: #fff;
-    transform-origin: 100% 100%;
-    bottom: 0;
-  }
-  
-  .ml14 .letter {
-    display: inline-block;
-    line-height: 1em;
-  }
+.ml14 {
+font-weight: 200;
+font-size: 3.2em;
+}
+
+.ml14 .text-wrapper {
+position: relative;
+display: inline-block;
+padding-top: 0.1em;
+padding-right: 0.05em;
+padding-bottom: 0.15em;
+}
+
+.ml14 .line {
+opacity: 0;
+position: absolute;
+left: 0;
+height: 2px;
+width: 100%;
+background-color: #fff;
+transform-origin: 100% 100%;
+bottom: 0;
+}
+
+.ml14 .letter {
+display: inline-block;
+line-height: 1em;
+}
 
 
-  .graph-container {
+.graph-container {
     max-width: 100%;
     overflow-x: auto;
 }
@@ -294,6 +294,6 @@ nav {
     position: absolute;
     width: 100%;
     height: 100px;
-    background: url('wave.png'); /* replace with your wave image */
+    background: url('gif/wave.gif'); /* replace with your wave image */
     background-size: cover;
 }
