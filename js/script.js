@@ -7,6 +7,11 @@
   renderer.setSize(window.innerWidth, window.innerHeight);
 
   const scene = new THREE.Scene();
+  const bgTexture = new THREE.TextureLoader().load('img/8k_stars_milky_way.jpg');
+  bgTexture.colorSpace = THREE.SRGBColorSpace;
+  bgTexture.mapping = THREE.EquirectangularReflectionMapping;
+  scene.background = bgTexture;
+
   const camera = new THREE.PerspectiveCamera(55, window.innerWidth/window.innerHeight, 0.1, 220);
   camera.position.set(0, 0.6, 9);
 
