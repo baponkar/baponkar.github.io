@@ -64,6 +64,11 @@ nav .logo:active{
   transform: scale(0.94);
 }
 
+nav .logo.logo-pressed{
+  transform: scale(0.94);
+  transition: transform 0.15s ease;
+}
+
 /* small underline hint that grows on hover, reinforcing "this does something" */
 nav .logo::after{
   content:'';

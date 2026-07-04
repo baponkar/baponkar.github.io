@@ -1,8 +1,14 @@
 // ---- logo click toggles a minimal/focus mode ----
-  const logoToggle = document.getElementById('logo-toggle');
+const logoToggle = document.getElementById('logo-toggle');
+  const logoHint = document.getElementById('logo-hint');
   if(logoToggle){
     logoToggle.addEventListener('click', () => {
       document.body.classList.toggle('minimal-mode');
+      if(logoHint) logoHint.remove();
+
+      // brief tactile "press" feedback that works identically on mouse + touch
+      logoToggle.classList.add('logo-pressed');
+      setTimeout(() => logoToggle.classList.remove('logo-pressed'), 180);
     });
   }
 
