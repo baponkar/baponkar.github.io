@@ -1,16 +1,16 @@
 // ---- logo click toggles a minimal/focus mode ----
 const logoToggle = document.getElementById('logo-toggle');
-  const logoHint = document.getElementById('logo-hint');
-  if(logoToggle){
-    logoToggle.addEventListener('click', () => {
-      document.body.classList.toggle('minimal-mode');
-      if(logoHint) logoHint.remove();
+const logoHint = document.getElementById('logo-hint');
+if(logoToggle){
+  logoToggle.addEventListener('click', () => {
+    document.body.classList.toggle('minimal-mode');
+    if(logoHint) logoHint.remove();
 
-      // brief tactile "press" feedback that works identically on mouse + touch
-      logoToggle.classList.add('logo-pressed');
-      setTimeout(() => logoToggle.classList.remove('logo-pressed'), 180);
-    });
-  }
+    // brief tactile "press" feedback that works identically on mouse + touch
+    logoToggle.classList.add('logo-pressed');
+    setTimeout(() => logoToggle.classList.remove('logo-pressed'), 180);
+  });
+}
 
 (function(){
   const canvas = document.getElementById('hero-canvas');
@@ -21,7 +21,31 @@ const logoToggle = document.getElementById('logo-toggle');
   renderer.setSize(window.innerWidth, window.innerHeight);
 
   const scene = new THREE.Scene();
-  const bgTexture = new THREE.TextureLoader().load('img/8k_stars_milky_way.jpg');
+
+  // ---- loading manager: tracks every texture load and drives the loader overlay ----
+  const loaderOverlay = document.getElementById('loader-overlay');
+  const loaderBarFill = document.getElementById('loader-bar-fill');
+  const loaderPercent = document.getElementById('loader-percent');
+
+  const loadingManager = new THREE.LoadingManager();
+  loadingManager.onProgress = (url, loaded, total) => {
+    const pct = Math.round((loaded / total) * 100);
+    if(loaderBarFill) loaderBarFill.style.width = pct + '%';
+    if(loaderPercent) loaderPercent.textContent = pct + '%';
+  };
+  loadingManager.onLoad = () => {
+    // small delay so the bar visibly reaches 100% before fading out
+    setTimeout(() => {
+      if(loaderOverlay) loaderOverlay.classList.add('loaded');
+    }, 300);
+  };
+  loadingManager.onError = (url) => {
+    console.warn('Failed to load:', url);
+  };
+
+  const textureLoader = new THREE.TextureLoader(loadingManager);
+
+  const bgTexture = textureLoader.load('img/8k_stars_milky_way.jpg');
   bgTexture.colorSpace = THREE.SRGBColorSpace;
   bgTexture.mapping = THREE.EquirectangularReflectionMapping;
   scene.background = bgTexture;
@@ -80,7 +104,7 @@ const logoToggle = document.getElementById('logo-toggle');
     return tex;
   }
 
-function makeSunTexture(){
+  function makeSunTexture(){
     const w=512, h=256;
     const c = document.createElement('canvas'); c.width=w; c.height=h;
     const ctx = c.getContext('2d');
@@ -96,8 +120,6 @@ function makeSunTexture(){
     }
     return new THREE.CanvasTexture(c);
   }
-
-  const textureLoader = new THREE.TextureLoader();
 
   // ---- root group (draggable) ----
   // The sun sits at 2/5 of the galaxy's radius from the true galactic center,
@@ -441,9 +463,9 @@ function makeSunTexture(){
     { planet:'Saturn', label:'C#', desc:'.NET desktop apps when the target is Windows.', base:'#d9c27e', accent:'#f0e0a8', radius:9.0, speed:0.08, incX:-0.2, incZ:-0.55, size:0.34, ring:true, texture:'img/2k_saturn.jpg', ringTexture:'img/2k_saturn_ring_alpha.png',
       moons:[ { name:'Titan', label:'.NET', desc:'The runtime behind Windows desktop tools.', size:0.05, dist:0.7, speed:1.1 } ] },
     { planet:'Uranus', label:'Java', desc:'Android client for the offline voice chat app.', base:'#7fd6d6', accent:'#bfefef', radius:10.4, speed:0.06, incX:0.6, incZ:0.3, size:0.26, texture:'img/2k_uranus.jpg',
-      moons:[ { name:'Titania', label:'Android SDK', desc:'MediaProjection API and Mjpg screen mirroring.', size:0.04, dist:0.46, speed:1.6 } ] },
+      moons:[ { name:'Titania', label:'Android SDK', desc:'MediaProjection API and MJPEG screen mirroring.', size:0.04, dist:0.46, speed:1.6 } ] },
     { planet:'Neptune', label:'Fortran', desc:'The odd numerics project, mostly for fun.', base:'#2d5986', accent:'#4a7fae', radius:11.8, speed:0.05, incX:-0.4, incZ:-0.35, size:0.25, texture:'img/2k_neptune.jpg' },
-];
+  ];
 
   nodeData.forEach(d => {
     const pivot = new THREE.Object3D();

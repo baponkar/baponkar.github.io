@@ -254,3 +254,57 @@ body.minimal-mode nav .logo{
   body.minimal-mode #hero-canvas {
     cursor: default;
   }
+
+  #loader-overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+#loader-overlay.loaded{
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.loader-logo{
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: 0.05em;
+  color: var(--ivory);
+  animation: logo-pulse 2s ease-in-out infinite;
+}
+.loader-logo span{ color: var(--trace); }
+
+.loader-bar-track{
+  width: 220px;
+  height: 2px;
+  background: rgba(0,255,157,0.15);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.loader-bar-fill{
+  height: 100%;
+  width: 0%;
+  background: var(--trace);
+  box-shadow: 0 0 8px rgba(0,255,157,0.6);
+  transition: width 0.25s ease;
+}
+
+.loader-percent{
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
