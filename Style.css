@@ -176,3 +176,6 @@
 
   footer{ text-align:center; padding:60px 24px 80px; color:var(--muted); font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.08em; }
   footer .core{ color:var(--trace); }
+
+
+  .visitor-counter img{ display:block; margin:0 auto; padding:25px 0; }
