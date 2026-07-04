@@ -33,8 +33,63 @@
     font-family:'JetBrains Mono', monospace;
     mix-blend-mode:difference;
   }
-  nav .logo{ font-weight:800; letter-spacing:0.02em; font-size:15px; }
-  nav .logo span{ color:var(--trace); }
+nav .logo{
+  font-weight:800; letter-spacing:0.02em; font-size:15px;
+  position:relative;
+  cursor:pointer;
+  padding:6px 10px;
+  border-radius:4px;
+  transition: color 0.25s, transform 0.2s, background 0.25s;
+}
+nav .logo span{ color:var(--trace); }
+
+/* subtle breathing glow so it reads as "alive"/clickable even before hovering */
+nav .logo{
+  animation: logo-pulse 3s ease-in-out infinite;
+}
+@keyframes logo-pulse{
+  0%, 100% { text-shadow: 0 0 0px rgba(0,255,157,0); }
+  50%      { text-shadow: 0 0 10px rgba(0,255,157,0.45); }
+}
+
+/* hover: brighten + lift slightly, clear affordance */
+nav .logo:hover{
+  color: var(--trace);
+  background: rgba(0,255,157,0.08);
+  transform: translateY(-1px);
+}
+
+/* click feedback: quick scale-down "press" */
+nav .logo:active{
+  transform: scale(0.94);
+}
+
+/* small underline hint that grows on hover, reinforcing "this does something" */
+nav .logo::after{
+  content:'';
+  position:absolute;
+  left:10px; right:10px; bottom:2px;
+  height:1px;
+  background: var(--trace);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  opacity:0.6;
+}
+nav .logo:hover::after{
+  transform: scaleX(1);
+}
+
+/* when minimal mode is active, logo gets a steady glow so it's obvious what to click to bring content back */
+body.minimal-mode nav .logo{
+  color: var(--trace);
+  text-shadow: 0 0 14px rgba(0,255,157,0.6);
+  animation: logo-pulse-active 1.6s ease-in-out infinite;
+}
+@keyframes logo-pulse-active{
+  0%, 100% { text-shadow: 0 0 8px rgba(0,255,157,0.4); }
+  50%      { text-shadow: 0 0 18px rgba(0,255,157,0.8); }
+}
   nav ul{ list-style:none; display:flex; gap:28px; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; }
   nav ul li a{ opacity:0.75; transition:opacity .25s; }
   nav ul li a:hover{ opacity:1; }
@@ -180,4 +235,17 @@
 
   .visitor-counter img{ display:block; margin:0 auto; padding:25px 0; }
 
-  
+  /* Minimal/focus mode - hides everything except the logo */
+  body.minimal-mode nav ul,
+  body.minimal-mode .hero .eyebrow,
+  body.minimal-mode .hero h1,
+  body.minimal-mode .hero p.sub,
+  body.minimal-mode .hero .hint,
+  body.minimal-mode main,
+  body.minimal-mode footer {
+    display: none !important;
+  }
+
+  body.minimal-mode #hero-canvas {
+    cursor: default;
+  }

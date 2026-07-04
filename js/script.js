@@ -1,3 +1,11 @@
+// ---- logo click toggles a minimal/focus mode ----
+  const logoToggle = document.getElementById('logo-toggle');
+  if(logoToggle){
+    logoToggle.addEventListener('click', () => {
+      document.body.classList.toggle('minimal-mode');
+    });
+  }
+
 (function(){
   const canvas = document.getElementById('hero-canvas');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -527,9 +535,11 @@ function makeSunTexture(){
 
   const glowTexIce = glowTexture('#cdeeff');
 
+  const cometTex = textureLoader.load('img/comet_nucleus.jpg');
+  cometTex.colorSpace = THREE.SRGBColorSpace;
   const cometMesh = new THREE.Mesh(
     new THREE.SphereGeometry(0.14, 16, 16),
-    new THREE.MeshBasicMaterial({ color:0xe8f7ff })
+    new THREE.MeshStandardMaterial({ map: cometTex, roughness:0.95, metalness:0.05 })
   );
   cometMesh.userData = { planet:'Comet', label:'Uptime', desc:'Swings by every so often — much like a build that finally stays green.' };
   cometPivot.add(cometMesh);
